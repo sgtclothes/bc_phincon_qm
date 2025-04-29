@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Phincon Academy</title>
+        <style>
+            h2 {
+                background-color: black;
+                color: white;
+            }
+            p {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="color: green">Materi Fullstack Javascript</h1>
+        <h2>1. Pernyataan (Statement)</h2>
+        <p>Statement merupakan sebuah pernyataan untuk variable javascript</p>
+        <div id="statement-div">Ini adalah div</div>
+        <h2>2. Perulangan (Loop)</h2>
+        <p>Perulangan merupakan sebuah metode untuk iterasi variable javascript</p>
+        <ul id="fruits-list"></ul>
+        <h2>3. Percabangan (If else)</h2>
+        <p>Percabangan merupakan sebuah metode untuk pengkondisian variable javascript</p>
+        <script>
+            let name = "Lita";
+            let age = 40;
+            let fruits = ["apple", "banana", "cherry"];
+            console.log("Halo Phincon Academy");
+            console.log("Halo mas Ibra");
+            console.log(name);
+            console.log(age);
+            for (let i = 1; i <= 3; i++) {
+                console.log("Phincon Academy");
+            }
+            for (let i = 0; i < fruits.length; i++) {
+                console.log(fruits[i]);
+            }
+            if (age < 20) {
+                console.log("Kamu masih anak muda");
+            } else if (age < 30) {
+                console.log("Kamu sudah mulai dewasa");
+            } else {
+                console.log("Kamu sudah dewasa");
+            }
+
+            let statementDiv = document.getElementById("statement-div");
+            statementDiv.innerHTML = "Ini konten pernyataan";
+            statementDiv.style.color = "red";
+            statementDiv.style.textAlign = "center";
+
+            let fruitsList = document.getElementById("fruits-list");
+
+            for (let i = 0; i < fruits.length; i++) {
+                let li = document.createElement("li");
+                li.innerHTML = fruits[i];
+                fruitsList.appendChild(li);
+            }
+        </script>
+    </body>
+</html>

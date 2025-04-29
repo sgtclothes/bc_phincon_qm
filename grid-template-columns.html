@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Contoh Kotak Grid</title>
+        <style>
+            body {
+                color: white;
+                text-align: center;
+            }
+
+            #content {
+                max-width: 960px;
+                margin: 0;
+                display: grid;
+                grid-template-columns: repeat(9, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+                gap: 1px;
+            }
+
+            #content div {
+                background: lightskyblue;
+                padding: 30px;
+            }
+
+            #content div:nth-child(even) {
+                background: gray;
+            }
+
+            .kotak1 {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div class="kotak1">1</div>
+            <div class="kotak2">2</div>
+            <div class="kotak3">3</div>
+            <div class="kotak4">4</div>
+            <div class="kotak5">5</div>
+            <div class="kotak6">6</div>
+            <div class="kotak7">7</div>
+            <div class="kotak8">8</div>
+            <div class="kotak9">9</div>
+        </div>
+    </body>
+</html>

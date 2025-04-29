@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pokemon Gallery</title>
+        <!-- Tailwind CSS CDN yang benar -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    </head>
+    <body class="bg-gradient-to-r from-blue-50 to-purple-50 min-h-screen">
+        <div class="container mx-auto p-4">
+            <header class="mb-8 text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-2">Pokemon Gallery</h1>
+                <p class="text-gray-600">Explore the world of Pokemon</p>
+            </header>
+
+            <div class="flex justify-center mb-6">
+                <div class="relative w-full md:w-1/2">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search Pokemon..."
+                        class="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button id="searchButton" class="absolute right-3 top-2 text-gray-500 hover:text-blue-500">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="loader" class="flex justify-center items-center py-16">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+
+            <div id="pokemonList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+            <div id="pagination" class="mt-8 flex justify-center items-center">
+                <button
+                    id="prevPage"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-l-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <i class="fas fa-chevron-left mr-1"></i> Previous
+                </button>
+                <div id="pageInfo" class="px-4 py-2 bg-white border-t border-b border-gray-300">
+                    Page <span id="currentPage">1</span>
+                </div>
+                <button id="nextPage" class="px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600">
+                    Next <i class="fas fa-chevron-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal for Pokemon details -->
+        <div
+            id="pokemonModal"
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+        >
+            <div class="bg-white rounded-lg p-6 max-w-md w-full max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-gray-800"></h2>
+                    <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="modalContent" class="space-y-4"></div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const pokemonListElement = document.getElementById("pokemonList");
+                const loaderElement = document.getElementById("loader");
+                const prevPageButton = document.getElementById("prevPage");
+                const nextPageButton = document.getElementById("nextPage");
+                const currentPageElement = document.getElementById("currentPage");
+                const searchInput = document.getElementById("searchInput");
+                const searchButton = document.getElementById("searchButton");
+                const modal = document.getElementById("pokemonModal");
+                const closeModalButton = document.getElementById("closeModal");
+                const modalTitle = document.getElementById("modalTitle");
+                const modalContent = document.getElementById("modalContent");
+
+                let currentPage = 1;
+                const itemsPerPage = 20;
+                let pokemonData = [];
+                let filteredData = [];
+                let isSearchActive = false;
+
+                // Initial data fetch
+                fetchPokemonData();
+
+                // Event listeners
+                prevPageButton.addEventListener("click", handlePrevPage);
+                nextPageButton.addEventListener("click", handleNextPage);
+                searchButton.addEventListener("click", handleSearch);
+                searchInput.addEventListener("keypress", function (e) {
+                    if (e.key === "Enter") {
+                        handleSearch();
+                    }
+                });
+                closeModalButton.addEventListener("click", closeModal);
+
+                // Close modal when clicking outside
+                window.addEventListener("click", function (e) {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+
+                function fetchPokemonData() {
+                    loaderElement.classList.remove("hidden");
+                    pokemonListElement.innerHTML = "";
+
+                    const offset = (currentPage - 1) * itemsPerPage;
+                    const url = `https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${offset}`;
+
+                    fetch(url)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            pokemonData = data.results;
+                            filteredData = pokemonData;
+                            renderPokemonList(pokemonData);
+                            updatePaginationButtons(data.previous, data.next);
+                            loaderElement.classList.add("hidden");
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching Pokemon data:", error);
+                            pokemonListElement.innerHTML = `
+                            <div class="col-span-full text-center text-red-500">
+                                <p>Failed to load Pokemon data. Please try again later.</p>
+                            </div>
+                        `;
+                            loaderElement.classList.add("hidden");
+                        });
+                }
+
+                function renderPokemonList(pokemonList) {
+                    pokemonListElement.innerHTML = "";
+
+                    if (pokemonList.length === 0) {
+                        pokemonListElement.innerHTML = `
+                        <div class="col-span-full text-center text-gray-500 py-8">
+                            <i class="fas fa-search fa-3x mb-4"></i>
+                            <p>No Pokemon found. Try a different search term.</p>
+                        </div>
+                    `;
+                        return;
+                    }
+
+                    pokemonList.forEach((pokemon, index) => {
+                        const pokemonId = getPokemonIdFromUrl(pokemon.url);
+                        const card = document.createElement("div");
+                        card.className =
+                            "bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform hover:scale-105 cursor-pointer";
+                        card.innerHTML = `
+                        <div class="p-4 flex flex-col items-center">
+                            <div class="w-32 h-32 flex items-center justify-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png" 
+                                     alt="${pokemon.name}" class="max-h-full">
+                            </div>
+                            <h3 class="mt-4 text-xl font-semibold text-gray-800 capitalize">${pokemon.name}</h3>
+                            <div class="mt-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                                #${pokemonId.toString().padStart(3, "0")}
+                            </div>
+                            <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition view-details" data-id="${pokemonId}">
+                                View Details
+                            </button>
+                        </div>
+                    `;
+
+                        card.querySelector(".view-details").addEventListener("click", function () {
+                            openPokemonDetails(pokemonId);
+                        });
+
+                        pokemonListElement.appendChild(card);
+                    });
+                }
+
+                function getPokemonIdFromUrl(url) {
+                    const parts = url.split("/");
+                    return parseInt(parts[parts.length - 2]);
+                }
+
+                function updatePaginationButtons(hasPrevious, hasNext) {
+                    prevPageButton.disabled = !hasPrevious;
+                    nextPageButton.disabled = !hasNext;
+                    currentPageElement.textContent = currentPage;
+                }
+
+                function handlePrevPage() {
+                    if (prevPageButton.disabled) return;
+                    currentPage--;
+                    isSearchActive ? handleSearch() : fetchPokemonData();
+                }
+
+                function handleNextPage() {
+                    if (nextPageButton.disabled) return;
+                    currentPage++;
+                    isSearchActive ? handleSearch() : fetchPokemonData();
+                }
+
+                function handleSearch() {
+                    const searchTerm = searchInput.value.toLowerCase().trim();
+
+                    if (searchTerm === "") {
+                        isSearchActive = false;
+                        currentPage = 1;
+                        fetchPokemonData();
+                        return;
+                    }
+
+                    isSearchActive = true;
+                    loaderElement.classList.remove("hidden");
+
+                    // Search through API
+                    fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000`)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            const allPokemon = data.results;
+                            filteredData = allPokemon.filter((pokemon) => pokemon.name.includes(searchTerm));
+
+                            // Pagination for search results
+                            const startIndex = (currentPage - 1) * itemsPerPage;
+                            const endIndex = startIndex + itemsPerPage;
+                            const paginatedResults = filteredData.slice(startIndex, endIndex);
+
+                            renderPokemonList(paginatedResults);
+
+                            // Update pagination buttons
+                            updatePaginationButtons(startIndex > 0, endIndex < filteredData.length);
+
+                            loaderElement.classList.add("hidden");
+                        })
+                        .catch((error) => {
+                            console.error("Error searching Pokemon:", error);
+                            loaderElement.classList.add("hidden");
+                        });
+                }
+
+                function openPokemonDetails(pokemonId) {
+                    loaderElement.classList.remove("hidden");
+
+                    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+                        .then((response) => response.json())
+                        .then((pokemon) => {
+                            modalTitle.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+                            const types = pokemon.types
+                                .map(
+                                    (type) =>
+                                        `<span class="px-2 py-1 rounded-full bg-gray-200 text-gray-800">${type.type.name}</span>`
+                                )
+                                .join(" ");
+
+                            const abilities = pokemon.abilities
+                                .map((ability) => `<li>${ability.ability.name.replace("-", " ")}</li>`)
+                                .join("");
+
+                            const stats = pokemon.stats
+                                .map((stat) => {
+                                    const percentage = (stat.base_stat / 255) * 100;
+                                    return `
+                                <div class="mb-2">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="capitalize">${stat.stat.name.replace("-", " ")}</span>
+                                        <span>${stat.base_stat}</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: ${percentage}%"></div>
+                                    </div>
+                                </div>
+                            `;
+                                })
+                                .join("");
+
+                            modalContent.innerHTML = `
+                            <div class="flex justify-center">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png" 
+                                     alt="${pokemon.name}" class="max-h-48">
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="font-semibold">Height</p>
+                                    <p>${(pokemon.height / 10).toFixed(1)} m</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Weight</p>
+                                    <p>${(pokemon.weight / 10).toFixed(1)} kg</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-semibold mb-2">Types</p>
+                                <div class="flex flex-wrap gap-2">${types}</div>
+                            </div>
+                            
+                            <div>
+                                <p class="font-semibold mb-2">Abilities</p>
+                                <ul class="list-disc list-inside capitalize">${abilities}</ul>
+                            </div>
+                            
+                            <div>
+                                <p class="font-semibold mb-2">Base Stats</p>
+                                <div>${stats}</div>
+                            </div>
+                        `;
+
+                            modal.classList.remove("hidden");
+                            loaderElement.classList.add("hidden");
+                        })
+                        .catch((error) => {
+                            console.error("Error fetching Pokemon details:", error);
+                            loaderElement.classList.add("hidden");
+                        });
+                }
+
+                function closeModal() {
+                    modal.classList.add("hidden");
+                }
+            });
+        </script>
+    </body>
+</html>

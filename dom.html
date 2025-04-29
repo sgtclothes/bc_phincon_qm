@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+        <style>
+            .container {
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="form" class="max-w-md mx-auto mt-8 p-8 bg-white rounded-lg shadow-lg text-center">
+            <button id="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                Show Pokemon
+            </button>
+        </form>
+        <script>
+            let form = document.getElementById("form");
+            let container = document.createElement("div");
+            container.id = "container";
+            form.append(container);
+            async function fetchDitto() {
+                try {
+                    const responseDitto = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+                    return await responseDitto.json();
+                } catch (error) {
+                    alert("Terjadi error");
+                    console.log(error);
+                    throw new Error(error);
+                }
+            }
+            const button = document.getElementById("submit");
+            button.addEventListener("click", async (e) => {
+                e.preventDefault();
+                container.innerHTML = "";
+                let data = await fetchDitto();
+                let card = document.createElement("div");
+                card.className = "bg-white p-4 rounded-lg shadow-lg mt-4";
+                let name = document.createElement("h2");
+                name.textContent = data.name;
+                name.className = "text-2xl font-bold";
+                let height = document.createElement("p");
+                height.textContent = `Height: ${data.height}`;
+                let weight = document.createElement("p");
+                weight.textContent = `Weight: ${data.weight}`;
+                let image = document.createElement("img");
+                image.src = data.sprites.front_default;
+                image.className = "w-1/2 mx-auto";
+                card.append(name, height, weight, image);
+                container.append(card);
+            });
+        </script>
+    </body>
+</html>

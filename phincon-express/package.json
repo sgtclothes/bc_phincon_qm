@@ -1,0 +1,36 @@
+{
+    "name": "phincon-express",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "npx tsc && node src/dist/server.js",
+        "migrate": "npx tsc && npx sequelize-cli db:migrate",
+        "migrate:undo:all": "npx tsc && npx sequelize-cli db:migrate:undo:all",
+        "seed": "npx tsc && npx sequelize-cli db:seed:all",
+        "seed:undo:all": "npx tsc && npx sequelize-cli db:seed:undo:all",
+        "refresh": "rimraf src/dist && npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.5.0",
+        "express": "^5.1.0",
+        "mysql2": "^3.14.1",
+        "sequelize": "^6.37.7",
+        "sequelize-cli": "^6.6.2",
+        "uuid": "^11.1.0"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^5.0.2",
+        "@types/cors": "^2.8.17",
+        "@types/express": "^5.0.1",
+        "@types/node": "^22.15.2",
+        "nodemon": "^3.1.10"
+    }
+}

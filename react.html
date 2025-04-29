@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>React</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <!-- Tailwind CSS CDN -->
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    </head>
+    <body className="bg-gray-100">
+        <div id="container" class="container mx-auto px-4 py-8 max-w-4xl"></div>
+        <script type="text/babel">
+            const { useState, useEffect, createContext, useContext, useRef, useReducer } = React;
+
+            function TopNavigationBar({ handleClickHome, handleClickAbout }) {
+                return (
+                    <nav className="bg-indigo-600 text-white rounded-lg shadow-lg mb-6">
+                        <ul className="flex px-4 py-3 space-x-6 justify-center">
+                            <li>
+                                <a
+                                    onClick={() => handleClickHome("halo")}
+                                    href="#home"
+                                    className="font-medium hover:text-indigo-200 transition-colors"
+                                >
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    onClick={handleClickAbout}
+                                    href="#about"
+                                    className="font-medium hover:text-indigo-200 transition-colors"
+                                >
+                                    About
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#services" className="font-medium hover:text-indigo-200 transition-colors">
+                                    Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#contact" className="font-medium hover:text-indigo-200 transition-colors">
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                );
+            }
+
+            function Counter() {
+                const [count, setCount] = useState(0);
+                const [backgroundColor, setBackgroundColor] = useState("white");
+                const colorButtons = ["white", "black", "red", "blue", "green"];
+
+                const getTextColor = (bgColor) => {
+                    return bgColor === "white" || bgColor === "green" ? "text-black" : "text-white";
+                };
+
+                return (
+                    <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 className="text-xl font-bold mb-4">Counter</h2>
+                        <div className="flex items-center mb-4">
+                            <span className="text-2xl font-bold mr-4">{count}</span>
+                            <button
+                                onClick={() => setCount(count + 1)}
+                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition-colors"
+                            >
+                                Increment
+                            </button>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                            {colorButtons?.map((color, index) => {
+                                const bgclassName = `bg-${
+                                    color === "white" ? "white" : color === "black" ? "black" : color
+                                }-500`;
+                                const textclassName = getTextColor(color);
+
+                                return (
+                                    <button
+                                        key={index}
+                                        onClick={() => setBackgroundColor(color)}
+                                        className={`${bgclassName} ${textclassName} py-2 px-3 rounded-md hover:opacity-80 transition-opacity`}
+                                    >
+                                        Set BG to {color}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                );
+            }
+
+            function UserDashboard() {
+                const [userData, setUserData] = useState({
+                    name: "",
+                    email: "",
+                    phone: "",
+                });
+
+                return (
+                    <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 className="text-xl font-bold mb-4">User Dashboard</h2>
+                        <form
+                            className="space-y-4"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                console.log(userData);
+                            }}
+                        >
+                            <div>
+                                <label className="block text-gray-700 mb-1">Name</label>
+                                <input
+                                    value={userData.name}
+                                    onChange={(e) => {
+                                        setUserData((previousUserData) => {
+                                            return { ...previousUserData, name: e.target.value };
+                                        });
+                                    }}
+                                    type="text"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter your name"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-gray-700 mb-1">Email</label>
+                                <input
+                                    value={userData.email}
+                                    onChange={(e) => {
+                                        setUserData({ ...userData, email: e.target.value });
+                                    }}
+                                    type="email"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter your email"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-gray-700 mb-1">Phone</label>
+                                <input
+                                    value={userData.phone}
+                                    onChange={(e) => {
+                                        setUserData({ ...userData, phone: e.target.value });
+                                    }}
+                                    type="text"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    placeholder="Enter your phone number"
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="w-full bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md transition-colors"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                );
+            }
+
+            function Timer({ count, setCount }) {
+                const [pokemon, setPokemon] = useState(null);
+                const [isLoading, setIsLoading] = useState(false);
+                const [error, setError] = useState(null);
+
+                useEffect(() => {
+                    (async function () {
+                        setIsLoading(true);
+                        try {
+                            let response = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
+                            let json = await response.json();
+                            setPokemon(json);
+                            setIsLoading(false);
+                        } catch (error) {
+                            console.log(error);
+                            setError(error);
+                        } finally {
+                            setIsLoading(false);
+                        }
+                    })();
+                }, []);
+
+                if (isLoading) {
+                    return (
+                        <div className="bg-white p-6 rounded-lg shadow-md mb-6 flex justify-center">
+                            <div className="animate-pulse text-lg font-medium text-indigo-600">Loading...</div>
+                        </div>
+                    );
+                }
+
+                if (error) {
+                    return (
+                        <div className="bg-white p-6 rounded-lg shadow-md mb-6 flex justify-center">
+                            <div className="text-lg font-medium text-red-600">Error: {error.message}</div>
+                        </div>
+                    );
+                }
+
+                return (
+                    <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 className="text-xl font-bold mb-4">Pokemon Abilities</h2>
+                        <ul className="list-disc pl-5 space-y-1">
+                            {pokemon?.abilities?.map((ability, index) => (
+                                <li key={index} className="text-gray-700">
+                                    {ability.ability.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                );
+            }
+
+            const UserContext = createContext();
+
+            function Component1() {
+                const [user, setUser] = useState("Jesse Hall");
+                const [product, setProduct] = useState("React Course");
+
+                return (
+                    <UserContext.Provider value={{ user, product }}>
+                        <h1>{`Hello ${user}!`}</h1>
+                        <Component2 />
+                    </UserContext.Provider>
+                );
+            }
+
+            function Component2() {
+                return (
+                    <>
+                        <h1>Component 2</h1>
+                        <Component3 />
+                    </>
+                );
+            }
+
+            function Component3() {
+                return (
+                    <>
+                        <h1>Component 3</h1>
+                        <Component4 />
+                    </>
+                );
+            }
+
+            function Component4() {
+                return (
+                    <>
+                        <h1>Component 4</h1>
+                        <Component5 />
+                    </>
+                );
+            }
+
+            function Component5() {
+                const value = useContext(UserContext);
+
+                return (
+                    <>
+                        <h1>Component 5</h1>
+                        <h2>{`Hello ${value.user} again!`}</h2>
+                        <h2>{`Hello ${value.product} again!`}</h2>
+                    </>
+                );
+            }
+
+            function ExampleUseRef() {
+                const [inputValue, setInputValue] = useState("");
+                const previousInputValue = useRef("");
+
+                useEffect(() => {
+                    previousInputValue.current = inputValue;
+                    console.log("Triggered");
+                    console.log(previousInputValue);
+                }, [inputValue]);
+
+                return (
+                    <div className="space-y-4">
+                        <input
+                            type="text"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                        />
+                        <h2 className="text-lg font-medium text-gray-900">Current Value: {inputValue}</h2>
+                        <h2 className="text-lg font-medium text-gray-900">
+                            Previous Value: {previousInputValue.current}
+                        </h2>
+                    </div>
+                );
+            }
+
+            const initialTodos = [
+                {
+                    id: 1,
+                    title: "Todo 1",
+                    complete: false,
+                },
+                {
+                    id: 2,
+                    title: "Todo 2",
+                    complete: false,
+                },
+            ];
+
+            const reducer = (state, action) => {
+                switch (action.type) {
+                    case "COMPLETE":
+                        return state.map((todo) => {
+                            if (todo.id === action.id) {
+                                return { ...todo, complete: !todo.complete };
+                            } else {
+                                return todo;
+                            }
+                        });
+                    default:
+                        return state;
+                }
+            };
+
+            function Todos() {
+                const [todos, dispatch] = useReducer(reducer, initialTodos);
+
+                const handleComplete = (todo) => {
+                    dispatch({ type: "COMPLETE", id: todo.id });
+                };
+
+                return (
+                    <>
+                        {todos.map((todo) => (
+                            <div key={todo.id}>
+                                <input
+                                    type="checkbox"
+                                    checked={todo.complete}
+                                    onChange={() => handleComplete(todo)}
+                                />
+                                <label>{todo.title}</label>
+                            </div>
+                        ))}
+                    </>
+                );
+            }
+
+            function App() {
+                const [count, setCount] = useState(0);
+                let titleMaster = "React Dashboard";
+                let fruits = null;
+
+                const handleClickHome = (value) => {
+                    alert(value);
+                };
+
+                const handleClickAbout = () => {
+                    console.log("About");
+                };
+
+                return (
+                    <div className="min-h-screen">
+                        <TopNavigationBar handleClickHome={handleClickHome} handleClickAbout={handleClickAbout} />
+
+                        <h1 className="text-3xl font-bold text-center text-indigo-700 mb-8">{titleMaster}</h1>
+
+                        <Counter />
+                        <UserDashboard />
+                        <Timer count={count} setCount={setCount} />
+                        <Component1 />
+                        <ExampleUseRef />
+                        <Todos />
+
+                        <footer className="mt-12 text-center text-gray-500 text-sm">
+                            &copy; {new Date().getFullYear()} React Dashboard with Tailwind CSS
+                        </footer>
+                    </div>
+                );
+            }
+
+            const container = document.getElementById("container");
+            const root = ReactDOM.createRoot(container);
+            root.render(<App />);
+        </script>
+    </body>
+</html>
