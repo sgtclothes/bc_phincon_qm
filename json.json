@@ -1,0 +1,227 @@
+{
+    "scores": 4,
+    "status": "completed",
+    "endTime": "2025-04-28T12:59:14.182Z",
+    "eventId": "c3d29779-18d5-4388-8678-0cd2022da14c",
+    "platform": "telegram",
+    "telegram": {
+        "shortId": "YX2SY"
+    },
+    "programId": "8252e876-856e-456c-b9ae-abfb01702710",
+    "questions": [
+        {
+            "id": "11c66cc5-9f9c-4047-9514-94637c85d299",
+            "score": 0,
+            "answer": "e",
+            "startTime": 1745843914808,
+            "timeTaken": 63557,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        },
+        {
+            "id": "9c5b9e6f-b4d9-4fe9-b4ae-1871f997ae92",
+            "score": 1,
+            "answer": "a",
+            "startTime": 1745843978646,
+            "timeTaken": 1034259,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        },
+        {
+            "id": "5ea93710-0518-4e7e-8f42-f980ff77d214",
+            "score": 1,
+            "answer": "a",
+            "startTime": 1745845013439,
+            "timeTaken": 16928,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        },
+        {
+            "id": "6526bb4f-3b00-44d9-b13d-6a57e45239dc",
+            "score": 1,
+            "answer": "b",
+            "startTime": 1745845030656,
+            "timeTaken": 49209,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        },
+        {
+            "id": "1fe53531-1e1d-486c-80d1-345e4b0a3420",
+            "score": 0,
+            "answer": "e",
+            "startTime": 1745845080173,
+            "timeTaken": 38193,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        },
+        {
+            "id": "c139f940-3e29-4cfa-b12a-81ef8de6dc7e",
+            "score": 1,
+            "answer": "a",
+            "startTime": 1745845118643,
+            "timeTaken": 22824,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        },
+        {
+            "id": "dd0640d1-5872-40cb-b7c4-b1b3be07cd78",
+            "score": 0,
+            "answer": "b",
+            "startTime": 1745845141783,
+            "timeTaken": 12004,
+            "tryoutSections": [
+                {
+                    "id": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+                    "tag": "phincon",
+                    "code": "ISMS-30_CSP_BEGINNER",
+                    "data": {
+                        "icon": "📝",
+                        "type": "multiple-choice",
+                        "duration": 3600000,
+                        "telegram": {
+                            "shortId": 2,
+                            "instruction": "Please follow the current instruction:"
+                        },
+                        "instruction": "<div style=\"max-width: 700px; margin: 40px auto; background: #121212; padding: 20px; border-radius: 8px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);\">\n    <h2 style=\"color: white; text-align: center; border-bottom: 3px solid black; padding-bottom: 10px;\">Panduan Pengerjaan Soal Cyber Security</h2>\n\n    <h3 style=\"color: white; margin-top: 20px;\"><strong>Durasi:</strong> 1 jam</h3>\n    <h3 style=\"color: white;\"><strong>Jumlah Soal:</strong> 20 (Pilihan Ganda)</h3>\n\n    <h3 style=\"color: white; border-bottom: 2px solid #ddd; padding-bottom: 5px;\">Petunjuk Pengerjaan:</h3>\n    <ol style=\"color: white; font-size: 16px; line-height: 1.6; padding-left: 20px; list-style-type: disc;\">\n        <li>Bacalah setiap soal dengan cermat sebelum menjawab.</li>\n        <li>Pilihlah jawaban yang paling tepat dari <strong>a, b, c, d, atau e</strong>.</li>\n        <li>Tidak diperkenankan menggunakan catatan atau alat bantu lainnya.</li>\n        <li>Jawaban yang benar akan diberikan <strong>1 poin</strong>, tidak ada pengurangan poin untuk jawaban salah.</li>\n        <li>Jika waktu habis, jawaban yang sudah terisi akan dikumpulkan secara otomatis.</li>\n    </ol>\n</div>"
+                    },
+                    "order": 1,
+                    "title": "Content Security Policy (Beginner) - Phincon",
+                    "active": true,
+                    "createdAt": "2025-04-27T16:46:20.000Z",
+                    "updatedAt": "2025-04-27T16:46:20.000Z",
+                    "description": "Content Security Policy (Beginner) - Phincon"
+                }
+            ]
+        }
+    ],
+    "startTime": "2025-04-19T00:00:00.000Z",
+    "totalTimeMs": 1236974,
+    "tryoutSectionId": "3e14fd6a-d29b-4920-baba-52fcdd2e20a5",
+    "tryoutSectionTitle": "Content Security Policy (Beginner) - Phincon"
+}

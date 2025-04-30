@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "npx tsc && node src/dist/server.js",
+        "dev": "npx tsc && nodemon",
         "migrate": "npx tsc && npx sequelize-cli db:migrate",
         "migrate:undo:all": "npx tsc && npx sequelize-cli db:migrate:undo:all",
         "seed": "npx tsc && npx sequelize-cli db:seed:all",

@@ -8,6 +8,14 @@ class UserController extends AbstractModel {
         try {
             const users = await db.User.findAll({
                 attributes: ["id", "fullname"],
+                include: [
+                    {
+                        model: db.Role,
+                        attributes: ["id", "title"],
+                        as: "roles",
+                        through: { attributes: [], model: db.UserRole },
+                    },
+                ],
             });
             res.json({
                 status: "success",

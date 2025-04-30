@@ -1,21 +1,19 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { UserModel } from "../types/user.type.js";
+import { CategoryModel } from "../types/category.type.js";
 
 export default (sequelize: Sequelize) => {
-    class User extends Model<UserModel> {
+    class Category extends Model<CategoryModel> {
         static associate(models: any) {
-            User.belongsToMany(models.Role, {
-                through: "users_roles",
-                as: "roles",
-                foreignKey: "userId",
-                otherKey: "roleId",
+            Category.hasMany(models.Product, {
+                foreignKey: "categoryId",
+                as: "products",
                 onDelete: "CASCADE",
                 onUpdate: "CASCADE",
             });
         }
     }
 
-    User.init(
+    Category.init(
         {
             id: {
                 type: DataTypes.UUID,
@@ -23,24 +21,7 @@ export default (sequelize: Sequelize) => {
                 allowNull: false,
                 defaultValue: DataTypes.UUIDV4,
             },
-            username: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            fullname: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            phoneNumber: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            email: {
-                type: DataTypes.STRING,
-                allowNull: false,
-                unique: true,
-            },
-            password: {
+            title: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
@@ -63,10 +44,10 @@ export default (sequelize: Sequelize) => {
         },
         {
             sequelize,
-            modelName: "User",
-            tableName: "users",
+            modelName: "Category",
+            tableName: "categories",
         }
     );
 
-    return User;
+    return Category;
 };

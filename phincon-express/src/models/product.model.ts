@@ -1,21 +1,19 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { UserModel } from "../types/user.type.js";
+import { ProductModel } from "../types/product.type.js";
 
 export default (sequelize: Sequelize) => {
-    class User extends Model<UserModel> {
+    class Product extends Model<ProductModel> {
         static associate(models: any) {
-            User.belongsToMany(models.Role, {
-                through: "users_roles",
-                as: "roles",
-                foreignKey: "userId",
-                otherKey: "roleId",
+            Product.belongsTo(models.Category, {
+                foreignKey: "categoryId",
                 onDelete: "CASCADE",
                 onUpdate: "CASCADE",
+                as: "category"
             });
         }
     }
 
-    User.init(
+    Product.init(
         {
             id: {
                 type: DataTypes.UUID,
@@ -23,26 +21,13 @@ export default (sequelize: Sequelize) => {
                 allowNull: false,
                 defaultValue: DataTypes.UUIDV4,
             },
-            username: {
+            title: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
-            fullname: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            phoneNumber: {
-                type: DataTypes.STRING,
-                allowNull: false,
-            },
-            email: {
-                type: DataTypes.STRING,
-                allowNull: false,
-                unique: true,
-            },
-            password: {
-                type: DataTypes.STRING,
-                allowNull: false,
+            categoryId: {
+                type: DataTypes.UUID,
+                allowNull: false
             },
             active: {
                 type: DataTypes.BOOLEAN,
@@ -63,10 +48,10 @@ export default (sequelize: Sequelize) => {
         },
         {
             sequelize,
-            modelName: "User",
-            tableName: "users",
+            modelName: "Product",
+            tableName: "products",
         }
     );
 
-    return User;
+    return Product;
 };
