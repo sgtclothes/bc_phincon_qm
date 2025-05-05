@@ -1,5 +1,5 @@
 {
     "watch": ["src"],
     "ext": "ts",
-    "exec": "node src/dist/server.js || exit 1"
+    "exec": "npx tsc && node src/dist/server.js || exit 1"
 }

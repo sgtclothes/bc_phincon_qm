@@ -12,7 +12,10 @@ class UserAPI extends ModelAPI {
         return data;
     }
     async getAll() {
-        const response = await fetch(`${BASE_URL_API}/users`);
+        const response = await fetch(`${BASE_URL_API}/users`, {
+            method: "GET",
+            credentials: "include",
+        });
         const data = await response.json();
         return data;
     }

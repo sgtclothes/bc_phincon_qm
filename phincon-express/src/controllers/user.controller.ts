@@ -2,21 +2,30 @@ import { Request, Response } from "express";
 import AbstractModel from "../abstracts/model.abstract.js";
 import { v4 as uuidv4 } from "uuid";
 import db from "../models/index.js";
+import UserService from "../services/user.service.js";
+import Jwt from "jsonwebtoken";
 
 class UserController extends AbstractModel {
     async getAll(req: Request, res: Response): Promise<void> {
         try {
-            const users = await db.User.findAll({
-                attributes: ["id", "fullname"],
-                include: [
-                    {
-                        model: db.Role,
-                        attributes: ["id", "title"],
-                        as: "roles",
-                        through: { attributes: [], model: db.UserRole },
-                    },
-                ],
-            });
+            const token = req.cookies.token;
+            if (!token) {
+                res.status(401).json({
+                    status: "error",
+                    message: "Unauthorized!",
+                });
+                return;
+            }
+            const decoded = Jwt.verify(token, process.env.JWT_SECRET_KEY as string);
+            console.log("DECODED:", decoded);
+            if (!decoded) {
+                res.status(401).json({
+                    status: "error",
+                    message: "Invalid token",
+                });
+                return;
+            }
+            const users = await UserService.getAll();
             res.json({
                 status: "success",
                 message: "Users fetched successfully",

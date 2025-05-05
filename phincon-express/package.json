@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "npx tsc && nodemon",
+        "dev": "nodemon",
         "migrate": "npx tsc && npx sequelize-cli db:migrate",
         "migrate:undo:all": "npx tsc && npx sequelize-cli db:migrate:undo:all",
         "seed": "npx tsc && npx sequelize-cli db:seed:all",
@@ -18,9 +18,12 @@
     "description": "",
     "dependencies": {
         "bcrypt": "^5.1.1",
+        "cookie-parser": "^1.4.7",
         "cors": "^2.8.5",
         "dotenv": "^16.5.0",
         "express": "^5.1.0",
+        "joi": "^17.13.3",
+        "jsonwebtoken": "^9.0.2",
         "mysql2": "^3.14.1",
         "sequelize": "^6.37.7",
         "sequelize-cli": "^6.6.2",
@@ -28,8 +31,10 @@
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
+        "@types/cookie-parser": "^1.4.8",
         "@types/cors": "^2.8.17",
         "@types/express": "^5.0.1",
+        "@types/jsonwebtoken": "^9.0.9",
         "@types/node": "^22.15.2",
         "nodemon": "^3.1.10"
     }

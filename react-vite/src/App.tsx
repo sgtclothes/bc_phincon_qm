@@ -1,21 +1,21 @@
 import "./App.css";
-import { useState } from "react";
-import TopNavigationBar from "./components/TopNavigationBar";
-import Todo from "./components/Todo";
-import Pokemon from "./components/Pokemon";
-import User from "./components/User";
+import Home from "./components/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-    const [activeTab, setActiveTab] = useState("content");
-
     return (
         <div className="min-h-screen bg-gray-50">
-            <TopNavigationBar onTabChange={setActiveTab} activeTab={activeTab} />
-            <div className="container mx-auto px-4 py-6">
-                {activeTab === "todo" && <Todo />}
-                {activeTab === "pokemon" && <Pokemon />}
-                {activeTab === "user" && <User />}
-            </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<ProtectedRoute />}>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/profile" element={<>Halaman Profile</>}></Route>
+                    </Route>
+                    <Route path="/login" element={<Login />}></Route>
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
